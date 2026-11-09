@@ -1,0 +1,129 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "Preset used by Gangfight"
+  ],
+  "extends": [
+    "config:best-practices",
+    ":disableRateLimiting",
+    ":prImmediately",
+    ":semanticCommits",
+    ":semanticCommitType(deps)"
+  ],
+  "dockerfile": {
+    "pinDigests": true
+  },
+  "gomod": {
+    "postUpdateOptions": [
+      "gomodUpdateImportPaths",
+      "gomodTidy"
+    ]
+  },
+  "regexManagers": [
+    {
+      "fileMatch": [
+        "(^|/|\\.)([Dd]ocker|[Cc]ontainer)file$",
+        "(^|/)([Dd]ocker|[Cc]ontainer)file[^/]*$"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>.*?))?\nENV .*?_VERSION=(?<currentValue>.*)"
+      ]
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Automerge lock file maintenance PRs",
+      "matchUpdateTypes": [
+        "lockFileMaintenance"
+      ],
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "locks",
+      "automerge": true
+    },
+    {
+      "description": "Semantic commits for major updates",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "semanticCommitType": "deps",
+      "semanticCommitScope": "major",
+      "automerge": true
+    },
+    {
+      "description": "Semantic commits for minor updates",
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "semanticCommitType": "deps",
+      "semanticCommitScope": "minor",
+      "automerge": true
+    },
+    {
+      "description": "Semantic commits for patch updates",
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "semanticCommitType": "deps",
+      "semanticCommitScope": "patch",
+      "automerge": true
+    },
+    {
+      "description": "Automerge mise tool updates",
+      "matchManagers": [
+        "mise"
+      ],
+      "semanticCommitType": "deps",
+      "semanticCommitScope": "mise",
+      "automerge": true
+    },
+    {
+      "description": "Automerge docker digest updates",
+      "groupName": "docker digests",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchUpdateTypes": [
+        "pin",
+        "pinDigest",
+        "digest"
+      ],
+      "semanticCommitType": "deps",
+      "semanticCommitScope": "patch",
+      "pinDigests": true,
+      "automerge": true,
+      "recreateWhen": "always"
+    },
+    {
+      "description": "Build tool version upgrades",
+      "groupName": "build tools",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "semanticCommitType": "ci",
+      "semanticCommitScope": "tools",
+      "automerge": true,
+      "pinDigests": false
+    },
+    {
+      "description": "Automerge untagged golang libs",
+      "groupName": "untagged libraries",
+      "matchPackageNames": [
+        "golang.org/x/crypto",
+        "golang.org/x/net"
+      ],
+      "semanticCommitType": "deps",
+      "semanticCommitScope": "patch",
+      "automerge": true
+    },
+    {
+      "matchPackageNames": [
+        "/^github.com\/uptrace\/bun(/.*)?$/"
+      ],
+      "groupName": "github.com-uptrace-bun deps"
+    }
+  ],
+  "automergeType": "pr",
+  "labels": [
+    "renovate"
+  ]
+}
