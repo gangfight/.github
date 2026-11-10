@@ -1,5 +1,7 @@
 # Gangfight: GitHub
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/7e9965637d3142d38914455fcc937396)](https://app.codacy.com/gh/gangfight/.github/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
 Generally this repository is used for a centrally defines Renovate configuration
 and it also provides the Github profile page. Currently there are no plans to
 extend the given context.
