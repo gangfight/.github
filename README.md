@@ -4,7 +4,12 @@ Generally this repository is used for a centrally defines Renovate configuration
 and it also provides the Github profile page. Currently there are no plans to
 extend the given context.
 
-## Prerequisites
+## Security
+
+If you find a security issue please contact
+[security@gangfight.eu](mailto:security@gangfight.eu) first.
+
+## Development
 
 We use [mise][mise] to manage all required tools and their versions. Install it
 by following the [official installation instructions][mise-install], then run
@@ -15,11 +20,6 @@ tools defined in `mise.toml`:
 mise trust
 mise install
 ```
-
-## Security
-
-If you find a security issue please contact
-[security@gangfight.eu](mailto:security@gangfight.eu) first.
 
 ## Contributing
 

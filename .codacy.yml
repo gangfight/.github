@@ -1,0 +1,8 @@
+---
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema#
+engines:
+  semgrep:
+    exclude_paths:
+      - ".github/workflows/**"
+
+...

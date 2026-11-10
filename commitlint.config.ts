@@ -1,6 +1,7 @@
-// yaml-language-server: $schema=https://json.schemastore.org/commitlintrc.json
-module.exports = {
-  extends: ['@commitlint/config-conventional'],
+import { type UserConfig } from "@commitlint/types";
+
+export default {
+  extends: ["@commitlint/config-conventional"],
   rules: {
     'type-enum': [
       2,
@@ -24,4 +25,4 @@ module.exports = {
       ],
     ],
   },
-};
+} satisfies UserConfig;

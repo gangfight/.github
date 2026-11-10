@@ -15,15 +15,11 @@ permissions:
 
 jobs:
   dependabot:
+    name: Automerge Dependabot PRs
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
 
     steps:
-      - name: Setup nodejs
-        uses: actions/setup-node@v7
-        with:
-          node-version: lts/*
-
       - name: Generate token
         id: token
         uses: actions/create-github-app-token@v3
@@ -40,12 +36,12 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Approve request
-        run: gh pr review --approve "${{github.event.pull_request.html_url}}"
+        run: gh pr review --approve "${{ github.event.pull_request.html_url }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Enable automerge
-        run: gh pr merge --rebase --auto "${{github.event.pull_request.html_url}}"
+        run: gh pr merge --rebase --auto "${{ github.event.pull_request.html_url }}"
         env:
           GH_TOKEN: ${{ steps.token.outputs.token }}
 
